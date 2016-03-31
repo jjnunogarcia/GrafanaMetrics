@@ -1,0 +1,16 @@
+apply plugin: 'application'
+
+mainClassName = 'com.fyber.metricsagent.Main'
+
+run {
+    def spreadsheetIdOrUrl = System.getenv("SPREADSHEET_ID_OR_URL") ?: (project.hasProperty('spreadsheetIdOrUrl') ? spreadsheetIdOrUrl : "")
+    def sheetName = System.getenv("SHEET_NAME") ?: (project.hasProperty('sheetName') ? sheetName : "")
+
+    systemProperty 'SPREADSHEET_ID_OR_URL', spreadsheetIdOrUrl
+    systemProperty 'SHEET_NAME', sheetName
+}
+
+dependencies {
+    compile project(':googleclient')
+    compile project(':grafanaclient')
+}

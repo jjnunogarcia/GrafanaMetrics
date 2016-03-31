@@ -1,0 +1,31 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:1.5.0'
+    }
+}
+
+allprojects {
+    repositories {
+        jcenter()
+    }
+}
+
+subprojects {
+    apply plugin: 'java'
+
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+
+    dependencies {
+        compile fileTree(dir: '../libs', include: 'lombok.jar')
+        compile 'com.squareup.retrofit2:converter-gson:2.0.0-beta4'
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
